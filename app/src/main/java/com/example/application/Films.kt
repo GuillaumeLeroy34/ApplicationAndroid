@@ -1,5 +1,5 @@
 package com.example.application
 
-class AffichageFilms {
+class Films {
 
 }
