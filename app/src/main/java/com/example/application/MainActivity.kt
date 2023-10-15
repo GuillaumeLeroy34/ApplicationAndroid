@@ -1,4 +1,4 @@
-package com.example.application
+ package com.example.application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +30,7 @@ import com.example.application.ui.theme.ApplicationTheme
 class MainActivity : ComponentActivity() {
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    MonImage()
+                    PhotoProfil()
                     //todo: réparer le bouton pété MonBouton()
 
 
@@ -50,16 +51,17 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-} //exemple: todo: à retirer
+ @Composable
+ fun TexteTest(){
+     if(true){
+         Text(text = "ceci est un texte affiché")
 
+     }
+ }
+ 
+ 
 @Composable
-fun MonImage() {
+fun PhotoProfil() {
 
     Column(modifier = Modifier.fillMaxSize(),
     verticalArrangement = Arrangement.SpaceAround,
@@ -83,23 +85,15 @@ fun MonImage() {
     }
 }
 @Composable
-fun MonBouton(){
+fun BoutonStart(){
     Button(onClick = { print("ligma") }) {
-
+Text(text = "Démarrer")
     }
 }
 @Composable
 fun Legende() {
     Text(text = "un chat pour les gouverner tous")
 }
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ApplicationTheme {
-        Greeting("Android")
-    }
-
 
 @Composable
     fun MyAppNavHost(
@@ -123,4 +117,3 @@ fun GreetingPreview() {
 
 
 
-}
