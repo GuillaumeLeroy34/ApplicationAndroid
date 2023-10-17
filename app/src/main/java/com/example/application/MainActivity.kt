@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -28,7 +29,6 @@ import androidx.navigation.compose.rememberNavController
 import com.example.application.ui.theme.ApplicationTheme
 
 class MainActivity : ComponentActivity() {
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +41,9 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    PhotoProfil()
-                    //todo: réparer le bouton pété MonBouton()
+
+                    MainScreen()
+
 
 
                 }
@@ -51,14 +52,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
- @Composable
- fun TexteTest(){
-     if(true){
-         Text(text = "ceci est un texte affiché")
 
-     }
- }
- 
  
 @Composable
 fun PhotoProfil() {
@@ -71,46 +65,23 @@ fun PhotoProfil() {
     ) {
 
 
-    Image(
-        painterResource(id = R.drawable.chat),
-        contentDescription = "le chat",
-        modifier = Modifier
-            .requiredSize(250.dp)
-            .padding(10.dp)
-            .clip(CircleShape),
 
-        contentScale = ContentScale.Crop
-    )
-        Legende()
     }
-}
-@Composable
-fun BoutonStart(){
-    Button(onClick = { print("ligma") }) {
-Text(text = "Démarrer")
-    }
-}
-@Composable
-fun Legende() {
-    Text(text = "un chat pour les gouverner tous")
 }
 
 @Composable
-    fun MyAppNavHost(
-        modifier: Modifier = Modifier,
-        navController: NavHostController = rememberNavController(),
-        startDestination: String = "profile"
-    ) {
+    fun MainScreen() {
+    val navController = rememberNavController()
         NavHost(
-            modifier = modifier,
             navController = navController,
-            startDestination = startDestination
+            startDestination = "profil"
         ){
             composable("profil") {
-                Profil(
-                )
+                ProfilScreen(navController)
             }
-            composable("films") { Films(/*...*/) }
+            composable("films") {
+                FilmsScreen(navController = navController)
+            }
         }
     }
 
