@@ -1,4 +1,25 @@
 package com.example.application
 
-class MainViewModel {
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.launch
+import retrofit2.Retrofit
+import retrofit2.converter.moshi.MoshiConverterFactory
+
+class MainViewModel: ViewModel() {
+    val movies = MutableStateFlow<MovieList>(MovieList())
+
+    val retrofit = Retrofit.Builder()
+        .baseUrl("https://api.themoviedb.org/3/")
+        .addConverterFactory(MoshiConverterFactory.create())
+        .build();
+
+    val api = retrofit.create(com.example.application.APITMDB::class.java)
+    fun getFilmInitiaux(){
+        viewModelScope.launch {
+            movies.value = api.lastmovies("ae21f15bbb373aabf4421d4fdef76076")
+        }
+    }
+
 }

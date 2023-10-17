@@ -1,4 +1,5 @@
- package com.example.application
+package com.example.application
+
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -45,7 +46,6 @@ class MainActivity : ComponentActivity() {
                     MainScreen()
 
 
-
                 }
             }
         }
@@ -53,37 +53,36 @@ class MainActivity : ComponentActivity() {
 }
 
 
- 
 @Composable
 fun PhotoProfil() {
 
-    Column(modifier = Modifier.fillMaxSize(),
-    verticalArrangement = Arrangement.SpaceAround,
-    horizontalAlignment = Alignment.CenterHorizontally
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
 
 
     ) {
-
 
 
     }
 }
 
 @Composable
-    fun MainScreen() {
+fun MainScreen() {
     val navController = rememberNavController()
-        NavHost(
-            navController = navController,
-            startDestination = "profil"
-        ){
-            composable("profil") {
-                ProfilScreen(navController)
-            }
-            composable("films") {
-                FilmsScreen(navController = navController)
-            }
+    NavHost(
+        navController = navController,
+        startDestination = "profil"
+    ) {
+        composable("profil") {
+            ProfilScreen(navController)
+        }
+        composable("films") {
+           FilmsScreen(navController)
         }
     }
+}
 
 
 
