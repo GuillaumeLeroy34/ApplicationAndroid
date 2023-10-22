@@ -3,6 +3,7 @@ package com.example.application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -27,43 +28,44 @@ import coil.compose.AsyncImage
 @Composable
 fun SeriesScreen(navController: NavController){
     BottomNavBar(navController)
+    ListeSeries(serieVM = MainViewModel(), navController = navController, nbColumns = 2, modifier = Modifier)
 }
 
-//@Composable
-//fun ListeSeries(serieVM: MainViewModel, navController: NavController, nbColumns: Int, modifier: Modifier) {
-//    val series by serieVM.movies.collectAsState()
-//
-//    if (movies.results.isEmpty()) {
-//        serieVM.getFilmInitiaux()
-//    }
-//    if (movies.results.isNotEmpty()) {
-//        LazyVerticalGrid(columns = GridCells.Fixed(nbColumns), modifier = modifier) {
-//            items(movies.results) { movie ->
-//                FloatingActionButton(
-//                    onClick = {navController.navigate("DetailMovie/${movie.id}")},
-//                    modifier = Modifier.padding(20.dp),
-//                    containerColor = Color.White,
-//                ) {
-//                    Column( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
-//                        Column( verticalArrangement = Arrangement.Center,
-//                            horizontalAlignment = Alignment.CenterHorizontally,
-//                            modifier = Modifier.fillMaxSize()) {
-//
-//                        }
-//                        Column(horizontalAlignment = Alignment.Start, modifier = Modifier.padding(start = 10.dp)){
-//                            Text(text = movie.title,
-//                                fontWeight = FontWeight.Bold,
-//                                color = Color.Black,
-//                                modifier = Modifier.padding(top = 5.dp))
-//                            AsyncImage(model = "https://image.tmdb.org/t/p/w780/${movie.poster_path}", contentDescription = "Affiche de ${movie.title}")
-//                            Text(text = movie.title, textAlign = TextAlign.Center , textDecoration = TextDecoration.Underline )
-//                            Text(text = movie.release_date)
-//                        }
-//
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
+@Composable
+fun ListeSeries(serieVM: MainViewModel, navController: NavController, nbColumns: Int, modifier: Modifier) {
+    val series by serieVM.series.collectAsState()
+
+    if (series.results.isEmpty()) {
+        serieVM.getSeriesInitiales()
+    }
+    if (series.results.isNotEmpty()) {
+        LazyVerticalGrid(columns = GridCells.Fixed(nbColumns), modifier = modifier) {
+            items(series.results) { serie ->
+                FloatingActionButton(
+                    onClick = {navController.navigate("Detailserie/${serie.id}")},
+                    modifier = Modifier.padding(20.dp),
+                    containerColor = Color.White,
+                ) {
+                    Column( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
+                        Column( verticalArrangement = Arrangement.Center,
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier.fillMaxSize()) {
+
+                        }
+                        Column(horizontalAlignment = Alignment.Start, modifier = Modifier.padding(start = 10.dp)){
+                            Text(text = serie.name,
+                                fontWeight = FontWeight.Bold,
+                                color = Color.Black,
+                                modifier = Modifier.padding(top = 5.dp).fillMaxWidth())
+                            AsyncImage(model = "https://image.tmdb.org/t/p/w780/${serie.poster_path}", contentDescription = "Affiche de ${serie.name}")
+                            Text(text = serie.name, textAlign = TextAlign.Center , textDecoration = TextDecoration.Underline )
+                         //   Text(text = serie.last_episode_to_air)
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
 

@@ -34,7 +34,6 @@ fun FilmsScreen(navController: NavController) {
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        BoutonRetour(navController)
         BottomNavBar(navController)
         ListeFilms(MainViewModel(),navController,2, Modifier)
 
@@ -42,12 +41,7 @@ fun FilmsScreen(navController: NavController) {
     }
 }
 
-@Composable
-fun BoutonRetour(navController: NavController) {
-    Button(onClick = { navController.navigate("profil") }) {
-        Text(text = "Retour")
-    }
-}
+
 
 
 

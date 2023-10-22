@@ -18,11 +18,17 @@ class MainViewModel: ViewModel() {
 
 
     val movies = MutableStateFlow<MovieList>(MovieList())
-
+    val series = MutableStateFlow<SerieList>(SerieList())
 
     fun getFilmInitiaux(){
         viewModelScope.launch {
             movies.value = api.lastmovies("ae21f15bbb373aabf4421d4fdef76076")
+        }
+    }
+
+    fun getSeriesInitiales(){
+        viewModelScope.launch{
+            series.value = api.lastseries("ae21f15bbb373aabf4421d4fdef76076")
         }
     }
 
