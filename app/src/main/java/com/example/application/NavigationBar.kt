@@ -77,14 +77,14 @@ fun BottomNavBar(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(onClick = { navController.navigate("Series") }) {
+                Button(onClick = { navController.navigate("series") }) {
                     Text(text = "Series")
                 }
-                Button(onClick = { navController.navigate("Films") }) {
+                Button(onClick = { navController.navigate("films") }) {
                     Text(text = "Films")
                 }
-                Button(onClick = { navController.navigate("Profil") }) {
-                    Text(text = "Profil")
+                Button(onClick = { navController.navigate("acteurs") }) {
+                    Text(text = "Acteurs")
                 }
 
             }

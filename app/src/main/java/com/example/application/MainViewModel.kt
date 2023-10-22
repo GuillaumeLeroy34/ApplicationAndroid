@@ -2,6 +2,7 @@ package com.example.application
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
@@ -19,6 +20,7 @@ class MainViewModel: ViewModel() {
 
     val movies = MutableStateFlow<MovieList>(MovieList())
     val series = MutableStateFlow<SerieList>(SerieList())
+    val actors = MutableStateFlow<ActorList>(ActorList())
 
     fun getFilmInitiaux(){
         viewModelScope.launch {
@@ -29,6 +31,12 @@ class MainViewModel: ViewModel() {
     fun getSeriesInitiales(){
         viewModelScope.launch{
             series.value = api.lastseries("ae21f15bbb373aabf4421d4fdef76076")
+        }
+    }
+
+    fun getActorsInitiaux(){
+        viewModelScope.launch{
+            actors.value = api.lastactors("ae21f15bbb373aabf4421d4fdef76076")
         }
     }
 

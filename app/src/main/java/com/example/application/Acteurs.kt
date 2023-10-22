@@ -3,12 +3,10 @@ package com.example.application
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,53 +22,76 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 
-
 @Composable
-fun SeriesScreen(navController: NavController){
+fun ActorsScreen(navController: NavController) {
     Column(
         Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BottomNavBar(navController)
-        ListeSeries(
-            serieVM = MainViewModel(),
+        ListeActors(
+            actorVM = MainViewModel(),
             navController = navController,
             nbColumns = 2,
             modifier = Modifier
         )
     }
-    }
+}
+
 
 @Composable
-fun ListeSeries(serieVM: MainViewModel, navController: NavController, nbColumns: Int, modifier: Modifier) {
-    val series by serieVM.series.collectAsState()
 
-    if (series.results.isEmpty()) {
-        serieVM.getSeriesInitiales()
+fun ListeActors(
+    actorVM: MainViewModel,
+    navController: NavController,
+    nbColumns: Int,
+    modifier: Modifier
+) {
+    val actors by actorVM.actors.collectAsState()
+
+    if (actors.results.isEmpty()) {
+        actorVM.getActorsInitiaux()
     }
-    if (series.results.isNotEmpty()) {
+    if (actors.results.isNotEmpty()) {
         LazyVerticalGrid(columns = GridCells.Fixed(nbColumns), modifier = modifier) {
-            items(series.results) { serie ->
+            items(actors.results) { actor ->
                 FloatingActionButton(
-                    onClick = {navController.navigate("Detailserie/${serie.id}")},
+                    onClick = { navController.navigate("Detailactor/${actor.id}") },
                     modifier = Modifier.padding(20.dp),
                     containerColor = Color.White,
                 ) {
-                    Column( verticalArrangement = Arrangement.Center, modifier = Modifier.fillMaxSize()) {
-                        Column( verticalArrangement = Arrangement.Center,
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        Column(
+                            verticalArrangement = Arrangement.Center,
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            modifier = Modifier.fillMaxSize()) {
+                            modifier = Modifier.fillMaxSize()
+                        ) {
 
                         }
-                        Column(horizontalAlignment = Alignment.Start, modifier = Modifier.padding(start = 10.dp)){
-                            Text(text = serie.name,
+                        Column(
+                            horizontalAlignment = Alignment.Start,
+                            modifier = Modifier.padding(start = 10.dp)
+                        ) {
+                            Text(
+                                text = actor.name,
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black,
-                                modifier = Modifier.padding(top = 5.dp))
-                            AsyncImage(model = "https://image.tmdb.org/t/p/w780/${serie.poster_path}", contentDescription = "Affiche de ${serie.name}")
-                            Text(text = serie.name, textAlign = TextAlign.Center , textDecoration = TextDecoration.Underline )
-                         //   Text(text = serie.last_episode_to_air)
+                                modifier = Modifier.padding(top = 5.dp)
+                            )
+                            AsyncImage(
+                                model = "https://image.tmdb.org/t/p/w780/${actor.profile_path}",
+                                contentDescription = "Affiche de ${actor.name}"
+                            )
+                            Text(
+                                text = actor.name,
+                                textAlign = TextAlign.Center,
+                                textDecoration = TextDecoration.Underline
+                            )
+
                         }
 
                     }
@@ -79,4 +100,6 @@ fun ListeSeries(serieVM: MainViewModel, navController: NavController, nbColumns:
         }
     }
 }
+
+
 

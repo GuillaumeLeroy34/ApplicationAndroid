@@ -9,7 +9,11 @@ interface APITMDB {
     suspend fun lastmovies(@Query("api_key") api_key: String): MovieList
 
 
-@GET("trending/tv/week")
-suspend fun lastseries(@Query("api_key")api_key: String): SerieList
+    @GET("trending/tv/week")
+    suspend fun lastseries(@Query("api_key") api_key: String): SerieList
+
+
+    @GET("trending/person/week")
+    suspend fun lastactors(@Query("api_key") api_key: String): ActorList
 }
 

@@ -76,8 +76,11 @@ fun MainScreen() {
         navController = navController,
         startDestination = "profil"
     ) {
-        composable("profil") {
+        composable("profil"){
             ProfilScreen(navController)
+        }
+        composable("acteurs") {
+            ActorsScreen(navController)
         }
         composable("films") {
            FilmsScreen(navController)
