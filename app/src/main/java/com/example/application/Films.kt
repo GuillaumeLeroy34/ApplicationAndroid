@@ -19,15 +19,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+
 
 
 @Composable
-fun TexteTest() {
-    Text(
-        text = "routage réussi"
-    )
+fun FilmsScreen(navController: NavController) {
+    Column(
+        Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        BoutonRetour(navController)
+        BottomNavBar(navController)
+        ListeFilms(MainViewModel(),navController,2, Modifier)
+
+
+    }
 }
 
 @Composable
@@ -37,18 +49,8 @@ fun BoutonRetour(navController: NavController) {
     }
 }
 
-@Composable
-fun FilmsScreen(navController: NavController) {
-    Column(
-        Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceAround,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TexteTest()
-        BoutonRetour(navController)
-        ListeFilms(MainViewModel(),navController,2, Modifier)
-    }
-}
+
+
 
 @Composable
 fun ListeFilms(filmVM: MainViewModel, navController: NavController, nbColumns: Int, modifier: Modifier) {
@@ -76,14 +78,17 @@ fun ListeFilms(filmVM: MainViewModel, navController: NavController, nbColumns: I
                                 fontWeight = FontWeight.Bold,
                                 color = Color.Black,
                                 modifier = Modifier.padding(top = 5.dp))
-                            }
+                            AsyncImage(model = "https://image.tmdb.org/t/p/w780/${movie.poster_path}", contentDescription = "Affiche de ${movie.title}")
+                            Text(text = movie.title, textAlign = TextAlign.Center , textDecoration = TextDecoration.Underline )
+                            Text(text = movie.release_date)
+                        }
+
                     }
                 }
             }
         }
     }
 }
-
 
 
 

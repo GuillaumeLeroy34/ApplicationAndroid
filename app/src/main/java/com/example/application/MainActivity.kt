@@ -60,13 +60,14 @@ fun PhotoProfil() {
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
-
-
     ) {
 
 
     }
 }
+
+
+
 
 @Composable
 fun MainScreen() {
@@ -81,7 +82,11 @@ fun MainScreen() {
         composable("films") {
            FilmsScreen(navController)
         }
+        composable("series"){
+            SeriesScreen(navController)
+        }
     }
+
 }
 
 
