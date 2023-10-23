@@ -2,6 +2,9 @@ package com.example.application
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,8 +19,14 @@ import coil.compose.AsyncImage
 
 @Composable
 fun SerieIndividuelleScreen(navController: NavController, id: String) {
-    SerieIndiv(id = id, navController = navController, modifier = Modifier)
-    BottomNavBar(navController)
+    Column(
+        Modifier.fillMaxSize().verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        SerieIndiv(id = id, navController = navController, modifier = Modifier)
+        BottomNavBar(navController)
+    }
 }
 
 @Composable

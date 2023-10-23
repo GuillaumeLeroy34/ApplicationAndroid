@@ -3,6 +3,9 @@ package com.example.application
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,8 +19,16 @@ import coil.compose.AsyncImage
 
 @Composable
 fun FilmIndivScreen(navController: NavController, id: String) {
-    FilmIndiv(id = id, navController = navController, modifier = Modifier)
-    BottomNavBar(navController)
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+        verticalArrangement = Arrangement.SpaceAround,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        FilmIndiv(id = id, navController = navController, modifier = Modifier)
+        BottomNavBar(navController)
+    }
 }
 
 @Composable

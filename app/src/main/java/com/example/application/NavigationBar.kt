@@ -1,12 +1,15 @@
 package com.example.application
 
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabPosition
@@ -19,9 +22,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.UiComposable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 
 
@@ -71,25 +77,62 @@ fun BottomNavBar(
 
 
     BottomAppBar(
-        containerColor = Color(0xFF2596BE),
+        containerColor = Color(0xFF6650A4),
         actions = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(onClick = { navController.navigate("series") }) {
-                    Text(text = "Series")
+                IconButton(onClick = { navController.navigate("series") }) {
+                    Column(
+                        verticalArrangement = Arrangement.SpaceEvenly,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        Icon(
+                            painter = painterResource(id = R.drawable.serieicon),
+                            modifier = Modifier, contentDescription = "icône serie"
+                        )
+                        Text(text = "Series", modifier = Modifier.background(Color.Black))
+
+                    }
+
                 }
-                Button(onClick = { navController.navigate("films") }) {
-                    Text(text = "Films")
+                IconButton(onClick = { navController.navigate("films") }) {
+
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        Icon(
+                            painter = painterResource(id = R.drawable.movieicon),
+                            modifier = Modifier, contentDescription = "icône film"
+                        )
+                        Text(text = "Film")
+
+                    }
                 }
-                Button(onClick = { navController.navigate("acteurs") }) {
-                    Text(text = "Acteurs")
+                IconButton(onClick = { navController.navigate("acteurs") }) {
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+
+                        Icon(
+                            painter = painterResource(id = R.drawable.actoricon),
+                            modifier = Modifier, contentDescription = "icône acteur"
+                        )
+                        Text(text = "Acteurs")
+
+                    }
                 }
 
             }
-        }
-    )
 
-
+        })
 }
+
+
+
+
