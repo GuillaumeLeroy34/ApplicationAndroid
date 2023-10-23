@@ -53,7 +53,7 @@ fun ListeSeries(serieVM: MainViewModel, navController: NavController, nbColumns:
         LazyVerticalGrid(columns = GridCells.Fixed(nbColumns), modifier = modifier) {
             items(series.results) { serie ->
                 FloatingActionButton(
-                    onClick = {navController.navigate("Detailserie/${serie.id}")},
+                    onClick = {navController.navigate("serieIndividuelle/${serie.id}")},
                     modifier = Modifier.padding(20.dp),
                     containerColor = Color.White,
                 ) {

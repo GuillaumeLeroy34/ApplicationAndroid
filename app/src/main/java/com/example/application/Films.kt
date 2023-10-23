@@ -57,7 +57,7 @@ fun ListeFilms(filmVM: MainViewModel, navController: NavController, nbColumns: I
         LazyVerticalGrid(columns = GridCells.Fixed(nbColumns), modifier = modifier) {
             items(movies.results) { movie ->
                 FloatingActionButton(
-                    onClick = {navController.navigate("DetailMovie/${movie.id}")},
+                    onClick = {navController.navigate("filmIndividuel/${movie.id}")},
                     modifier = Modifier.padding(20.dp),
                     containerColor = Color.White,
                 ) {

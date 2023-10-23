@@ -57,7 +57,7 @@ fun ListeActors(
         LazyVerticalGrid(columns = GridCells.Fixed(nbColumns), modifier = modifier) {
             items(actors.results) { actor ->
                 FloatingActionButton(
-                    onClick = { navController.navigate("Detailactor/${actor.id}") },
+                    onClick = { navController.navigate("acteurIndividuel/${actor.id}") },
                     modifier = Modifier.padding(20.dp),
                     containerColor = Color.White,
                 ) {

@@ -22,6 +22,9 @@ class MainViewModel: ViewModel() {
     val series = MutableStateFlow<SerieList>(SerieList())
     val actors = MutableStateFlow<ActorList>(ActorList())
 
+    val detailActor = MutableStateFlow<Actor>(Actor())
+    val detailSerie = MutableStateFlow<Serie>(Serie())
+    val detailMovie = MutableStateFlow<Movie>(Movie())
     fun getFilmInitiaux(){
         viewModelScope.launch {
             movies.value = api.lastmovies("ae21f15bbb373aabf4421d4fdef76076")
@@ -39,5 +42,25 @@ class MainViewModel: ViewModel() {
             actors.value = api.lastactors("ae21f15bbb373aabf4421d4fdef76076")
         }
     }
+
+    fun getDetailActor(id: String){
+        viewModelScope.launch{
+            detailActor.value = api.actorindividuel(id,"ae21f15bbb373aabf4421d4fdef76076")
+        }
+    }
+
+
+    fun getDetailFilm(id: String){
+        viewModelScope.launch{
+            detailMovie.value = api.filmindividuel(id,"ae21f15bbb373aabf4421d4fdef76076")
+        }
+    }
+
+    fun getDetailSerie(id: String){
+        viewModelScope.launch{
+            detailSerie.value = api.serieindividuelle(id,"ae21f15bbb373aabf4421d4fdef76076")
+        }
+    }
+
 
 }

@@ -71,7 +71,7 @@ fun BottomNavBar(
 
 
     BottomAppBar(
-        containerColor = Color(0xFFb3b1b3),
+        containerColor = Color(0xFF2596BE),
         actions = {
             Row(
                 modifier = Modifier.fillMaxWidth(),

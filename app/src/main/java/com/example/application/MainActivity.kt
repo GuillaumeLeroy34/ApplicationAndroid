@@ -88,6 +88,18 @@ fun MainScreen() {
         composable("series"){
             SeriesScreen(navController)
         }
+        composable("filmIndividuel/{movieid}"){ backStackEntry ->
+            val movieId = backStackEntry.arguments?.getString("movieid") ?: ""
+            FilmIndivScreen(navController,movieId)
+        }
+        composable("serieIndividuelle/{movieid}"){ backStackEntry ->
+            val movieId = backStackEntry.arguments?.getString("movieid") ?: ""
+            SerieIndividuelleScreen(navController,movieId)
+        }
+        composable("acteurIndividuel/{movieid}"){ backStackEntry ->
+            val movieId = backStackEntry.arguments?.getString("movieid") ?: ""
+            FilmIndivScreen(navController,movieId)
+        }
     }
 
 }

@@ -15,5 +15,15 @@ interface APITMDB {
 
     @GET("trending/person/week")
     suspend fun lastactors(@Query("api_key") api_key: String): ActorList
+
+    @GET("person/{id}?append_to_response=credits")
+    suspend fun actorindividuel(@Path("id") id: String, @Query("api_key") api_key: String): Actor
+
+    @GET("movie/{id}?append_to_response=credits")
+    suspend fun filmindividuel(@Path("id") id: String, @Query("api_key") api_key: String): Movie
+
+    @GET("tv/{id}?append_to_response=credits")
+    suspend fun serieindividuelle(@Path("id") id: String, @Query("api_key") api_key: String): Serie
+
 }
 
